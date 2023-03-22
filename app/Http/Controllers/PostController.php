@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public  function index() {
-        $posts = Post::where('is_published', '0')->get();
-        $posts = $posts->except([3, 4, 6]);
+        //$posts = Post::where('is_published', '0')->get();
+        //$posts = $posts->except([3, 4, 6]);
+        //$posts = Post::where('is_published', '0')->orWhere('is_published',  '1')->get();
+        $posts = Post::all();
 
-        foreach ($posts as $post) {
-            dump($post->title);
-        }
+
+        return view('posts', compact('posts'));
     }
-
     public  function create() {
         $postsArr = [
             [
@@ -34,7 +34,6 @@ class PostController extends Controller
                 'is_published' => 1,
             ],
         ];
-
         foreach ($postsArr as $item) {
             Post::create($item);
         }
@@ -55,4 +54,47 @@ class PostController extends Controller
     }
 
 
+    public  function  delete() {
+        $post = Post::find(2);
+        $post->delete();
+        dd('deleted');
+    }
+
+    public  function  restore() {
+        $post = Post::withTrashed()->find(2);
+        $post->restore();
+        dd('restored');
+    }
+
+    public  function firstOrCreate() {
+        $anotherPost = [
+            'title' => 'some_post',
+            'content' => 'some_content',
+            'image' => 'anothertestImage',
+            'likes' => 500,
+            'is_published' => 1,
+        ];
+
+        $post = Post::firstOrCreate([
+            'title' => 'some_post'
+        ], $anotherPost);
+
+        dd('finished firstOrCreate');
+    }
+
+    public  function updateOrCreate() {
+        $anotherPost = [
+            'title' => 'updated4 some_post2',
+            'content' => 'some_content',
+            'image' => 'anothertestImage',
+            'likes' => 500,
+            'is_published' => 1,
+        ];
+
+        $post = Post::updateOrCreate([
+            'title' => 'updated3 some_post2'
+        ], $anotherPost);
+
+        dd('finished updateOrCreate');
+    }
 }
