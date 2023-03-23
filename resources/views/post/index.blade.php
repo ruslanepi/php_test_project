@@ -7,7 +7,7 @@
                 <div class="col-3 ">
                    <div class="card">
                        <div class="card-body">
-                           <h5 class="card-title">{{$post->title}}</h5>
+                           <h5 class="card-title">{{$post->id}}. {{$post->title}}</h5>
                            <p class="card-text">{{$post->content}}</p>
                            <div class="icon"><i class="bi bi-heart me-1"></i><span>{{$post->likes}}</span></div>
                        </div>

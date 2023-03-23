@@ -13,33 +13,20 @@ class PostController extends Controller
         //$posts = $posts->except([3, 4, 6]);
         //$posts = Post::where('is_published', '0')->orWhere('is_published',  '1')->get();
         $posts = Post::all();
-
-
-        return view('posts', compact('posts'));
+        return view('post.index', compact('posts'));
     }
     public  function create() {
-        $postsArr = [
-            [
-                'title' => 'title of post',
-                'content' => 'content of post',
-                'image' => 'testImage',
-                'likes' => 50,
-                'is_published' => 1,
-            ],
-            [
-                'title' => 'another of post',
-                'content' => 'another content of post',
-                'image' => 'anothertestImage',
-                'likes' => 150,
-                'is_published' => 1,
-            ],
-        ];
-        foreach ($postsArr as $item) {
-            Post::create($item);
-        }
-        dd('created');
+        return view('post.create');
     }
-
+    public  function  store() {
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'image' => 'string',
+        ]);
+        Post::create($data);
+        return redirect()->route('post.index');
+    }
     public function update() {
         //$post1 = Post::where('id', '6')->get();
         $post1 = Post::find(6); //find ищет по primary_key
