@@ -15,6 +15,10 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->index('category_id', 'post_category_idx' );
+            $table->foreign('category_id', 'post_category_fk')->on('categories')->references('id');
+
             $table->string('title');
             $table->text('content');
             $table->string('image')->nullable();
@@ -22,9 +26,8 @@ class CreatePostsTable extends Migration
             $table->boolean('is_published')->default(1);
             $table->softDeletes();
             $table->timestamps();
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->index('category_id', 'post_category_idx' );
-            $table->foreign('category_id', 'post_category_fk')->on('categories')->references('id');
+
+
 
         });
     }

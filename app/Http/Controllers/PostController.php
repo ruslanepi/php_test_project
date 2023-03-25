@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,16 +15,30 @@ class PostController extends Controller
         //$posts = Post::where('is_published', '0')->get();
         //$posts = $posts->except([3, 4, 6]);
         //$posts = Post::where('is_published', '0')->orWhere('is_published',  '1')->get();
-        $category = Category::all();
-        $post = Post::find(3);
-        dump($post->category);
-        //$posts = Post::where('category_id', $category->id)->get();
-        foreach ($category as $cat) {
-            dump($cat->posts);
+        //$category = Category::all();
+        //$post = Post::find(3);
 
-        }
+//        $categories = Category::all();
+//        foreach ($categories as $category) {
+//            dump($category->title);
+//            dump($category->posts);
+//        }
 
+//        $posts = Post::all();
+//        foreach ($posts as $post) {
+//            dump($post->title);
+//            dump($post->category);
+//        }
 
+        $tags = Tag::all();
+
+        foreach ($tags as $tag) {
+            dump($tag->title);
+
+            foreach ($tag->posts as $postTitle) {
+                dump($postTitle->title);
+            }
+    }
 
         //return view('post.index', compact('posts'));
     }
