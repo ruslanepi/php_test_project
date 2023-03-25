@@ -9,6 +9,7 @@
                    <div class="card">
                        <div class="card-body">
                            <h5 class="card-title">{{$post->id}}. {{$post->title}}</h5>
+{{--                           {{$post->category->title}}--}}
                            <p class="card-text">{{$post->content}}</p>
                            <div class="icon"><i class="bi bi-heart me-1"></i><span>{{$post->likes}}</span></div>
                            <a href="{{route('post.show', $post->id)}}">Подробнее</a>
