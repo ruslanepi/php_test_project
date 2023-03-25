@@ -2,21 +2,24 @@
 @section('content')
 <section class="py-5">
     <div class="container">
-        <div class="mb-4"><a class="btn btn-primary" href="{{route('post.create')}}">Создать новую запись </a></div>
+        <div class="mb-2"><a class="btn btn-primary" href="{{route('post.index')}}">Назад</a></div>
+        <div class="mb-4"><a class="btn btn-secondary" href="{{route('post.edit', $post->id)}}">Редактировать</a></div>
         <div class="row gy-3 gx-3">
-            @foreach($posts as $post)
                 <div class="col-3 ">
                    <div class="card">
                        <div class="card-body">
                            <h5 class="card-title">{{$post->id}}. {{$post->title}}</h5>
                            <p class="card-text">{{$post->content}}</p>
                            <div class="icon"><i class="bi bi-heart me-1"></i><span>{{$post->likes}}</span></div>
-                           <a href="{{route('post.show', $post->id)}}">Подробнее</a>
                        </div>
                    </div>
                 </div>
-            @endforeach
         </div>
+        <form action="{{route('post.delete', $post->id)}}" method="post">
+            @csrf
+            @method('delete')
+            <input class="btn btn-danger mt-4" type="submit" placeholder="Удалить пост" value="Удалить пост">
+        </form>
     </div>
 </section>
 @endsection
