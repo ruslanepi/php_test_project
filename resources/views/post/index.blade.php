@@ -8,6 +8,7 @@
                 <div class="col-3 ">
                    <div class="card">
                        <div class="card-body">
+                           <img class="card-img-top mb-3" src="{{$post->image}}" alt="">
                            <h5 class="card-title">{{$post->id}}. {{$post->title}}</h5>
 {{--                           {{$post->category->title}}--}}
                            <p class="card-text">{{$post->content}}</p>

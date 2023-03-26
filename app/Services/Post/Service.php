@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Services\Post;
-
 use App\Models\Post;
 
 class Service
@@ -9,8 +8,9 @@ class Service
     public  function  store($data) {
         $tags = $data['tags'];
         unset($data['tags']);
-        $post = Post::create();
+        $post = Post::create($data);
         $post->tags()->attach($tags);
+
     }
 
     public  function  update( $post, $data) {
