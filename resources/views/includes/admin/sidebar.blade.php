@@ -6,11 +6,11 @@
 
         <li class="nav-header">Admin panel</li>
         <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+            <a href="/admin/post" class="nav-link">
                 <i class="nav-icon fas fa-calendar-alt"></i>
                 <p>
                     Posts
-                    <span class="badge badge-info right">{{$posts->total()}}</span>
+{{--                    <span class="badge badge-info right">{{$posts->total()}}</span>--}}
                 </p>
             </a>
         </li>
